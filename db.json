@@ -1,0 +1,30 @@
+{
+  "leads": [
+    {
+      "id": 1,
+      "name": "Rahul Sharma",
+      "mobile": "9876543210",
+      "email": "rahul@gmail.com",
+      "address": "Chennai",
+      "courseInterested": "React",
+      "leadSource": "Website",
+      "status": "New",
+      "assignedEmployee": "John",
+      "createdDate": "2026-07-01",
+      "notes": []
+    },
+    {
+      "id": 2,
+      "name": "Priya",
+      "mobile": "9876543222",
+      "email": "priya@gmail.com",
+      "address": "Trichy",
+      "courseInterested": "Node",
+      "leadSource": "Facebook",
+      "status": "Qualified",
+      "assignedEmployee": "David",
+      "createdDate": "2026-07-02",
+      "notes": []
+    }
+  ]
+}
