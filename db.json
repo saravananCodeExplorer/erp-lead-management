@@ -87,17 +87,12 @@
       "notes": []
     },
     {
-      "id": 8,
       "name": "Meena",
       "mobile": "9876543208",
       "email": "meena8@gmail.com",
-      "address": "Vellore",
-      "courseInterested": "UI/UX",
-      "leadSource": "Instagram",
       "status": "Contacted",
       "assignedEmployee": "David",
-      "createdDate": "2026-07-08",
-      "notes": []
+      "id": 8
     },
     {
       "id": 9,

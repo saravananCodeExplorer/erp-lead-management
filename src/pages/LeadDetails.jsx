@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import Loader from "../components/common/Loader";
-import { getLead } from "../services/leadService";
+import { getLead,updateLead } from "../services/leadService";
 import LeadInfo from "../components/leads/LeadInfo";
 
 import NotesList from "../components/notes/NotesList";
@@ -43,7 +43,30 @@ const LeadDetails = () => {
 
   if (!lead) {
     return <h2>Lead Not Found</h2>;
+    }
+    
+const handleAddNote = async (noteText) => {
+  const newNote = {
+    id: Date.now(),
+    note: noteText,
+    createdBy: "Admin",
+    createdDate: new Date().toISOString().split("T")[0],
+  };
+
+  const updatedLead = {
+    ...lead,
+    notes: [...(lead.notes || []), newNote],
+  };
+
+  try {
+    await updateLead(id, updatedLead);
+
+    setLead(updatedLead);
+  } catch (error) {
+    console.error(error);
+    alert("Failed to add note.");
   }
+};
 
   return (
     <div className="container">
@@ -58,7 +81,7 @@ const LeadDetails = () => {
           
           <hr />
 <h2>Lead Notes</h2>
-<NoteForm />
+<NoteForm onAddNote={handleAddNote} />
 <NotesList notes={lead.notes || []} />
 
     </div>
