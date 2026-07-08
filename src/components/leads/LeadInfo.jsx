@@ -2,7 +2,7 @@ import DetailRow from "./DetailRow";
 
 const LeadInfo = ({ lead }) => {
   return (
-    <table border="1" cellPadding="10" width="100%">
+    <table className="info-table">
       <tbody>
 
         <DetailRow

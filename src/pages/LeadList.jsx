@@ -35,7 +35,7 @@ const LeadList = () => {
       setError("");
 
       const response = await getLeads();
-      setLeads(response.data);
+      setLeads(response.data || []);
     } catch (err) {
       setError("Unable to load leads.");
     } finally {
@@ -62,9 +62,9 @@ const LeadList = () => {
     const keyword = search.toLowerCase();
 
     const matchesSearch =
-      lead.name.toLowerCase().includes(keyword) ||
-      lead.mobile.includes(keyword) ||
-      lead.email.toLowerCase().includes(keyword);
+      (lead.name || "").toLowerCase().includes(keyword) ||
+      (lead.mobile || "").includes(keyword) ||
+      (lead.email || "").toLowerCase().includes(keyword);
 
     const matchesStatus = !status || lead.status === status;
 
@@ -72,8 +72,8 @@ const LeadList = () => {
       !employee || lead.assignedEmployee === employee;
 
     const matchesDate =
-      (!startDate || lead.createdDate >= startDate) &&
-      (!endDate || lead.createdDate <= endDate);
+      (!startDate || (lead.createdDate && lead.createdDate >= startDate)) &&
+      (!endDate || (lead.createdDate && lead.createdDate <= endDate));
 
     return (
       matchesSearch &&
@@ -82,6 +82,12 @@ const LeadList = () => {
       matchesDate
     );
   });
+
+  // Stats Computations
+  const totalLeadsCount = leads.length;
+  const qualifiedCount = leads.filter(l => l.status === "Qualified").length;
+  const wonCount = leads.filter(l => l.status === "Won").length;
+  const inProgressCount = leads.filter(l => ["New", "Contacted", "Follow Up"].includes(l.status)).length;
 
   // Pagination
   const lastIndex = currentPage * rowsPerPage;
@@ -100,47 +106,86 @@ const LeadList = () => {
 
   // Error
   if (error) {
-    return <h2>{error}</h2>;
-  }
-
-  // Empty State
-  if (!loading && filteredLeads.length === 0) {
-    return <h2>No Leads Found</h2>;
+    return (
+      <div className="container">
+        <div className="empty-state" style={{ borderColor: 'var(--danger-color)' }}>
+          <h2 style={{ background: 'none', webkitTextFillColor: 'var(--danger-color)', margin: 0 }}>Error</h2>
+          <p>{error}</p>
+          <br />
+          <button className="btn-primary" onClick={loadLeads}>Try Again</button>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="container">
-      <h2>Lead Management</h2>
+      <h2>Leads Dashboard</h2>
 
-      <SearchBar
-        search={search}
-        setSearch={setSearch}
-      />
+      {/* Stats Widgets Grid */}
+      <div className="stats-grid">
+        <div className="stat-card">
+          <div className="stat-title">Total Leads</div>
+          <div className="stat-value">{totalLeadsCount}</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-title">In Progress</div>
+          <div className="stat-value" style={{ color: "var(--primary-accent)" }}>{inProgressCount}</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-title">Qualified</div>
+          <div className="stat-value" style={{ color: "var(--warning-color)" }}>{qualifiedCount}</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-title">Won</div>
+          <div className="stat-value" style={{ color: "var(--success-color)" }}>{wonCount}</div>
+        </div>
+      </div>
 
-      <FilterBar
-        status={status}
-        setStatus={setStatus}
-        employee={employee}
-        setEmployee={setEmployee}
-        startDate={startDate}
-        setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
-        resetFilters={resetFilters}
-      />
+      <div className="controls-row">
+        <div className="search-input-wrapper">
+          <SearchBar
+            search={search}
+            setSearch={setSearch}
+          />
+        </div>
 
-      <LeadTable leads={currentLeads} />
+        <FilterBar
+          status={status}
+          setStatus={setStatus}
+          employee={employee}
+          setEmployee={setEmployee}
+          startDate={startDate}
+          setStartDate={setStartDate}
+          endDate={endDate}
+          setEndDate={setEndDate}
+          resetFilters={resetFilters}
+        />
+      </div>
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        setCurrentPage={setCurrentPage}
-        rowsPerPage={rowsPerPage}
-        setRowsPerPage={(value) => {
-          setRowsPerPage(value);
-          setCurrentPage(1);
-        }}
-      />
+      {filteredLeads.length === 0 ? (
+        <div className="empty-state">
+          <h3>No Leads Found</h3>
+          <p>We couldn't find any leads matching your active filters. Try searching for a different keyword or resetting parameters.</p>
+          <br />
+          <button className="btn-secondary" onClick={resetFilters}>Reset All Filters</button>
+        </div>
+      ) : (
+        <>
+          <LeadTable leads={currentLeads} />
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            setCurrentPage={setCurrentPage}
+            rowsPerPage={rowsPerPage}
+            setRowsPerPage={(value) => {
+              setRowsPerPage(value);
+              setCurrentPage(1);
+            }}
+          />
+        </>
+      )}
     </div>
   );
 };

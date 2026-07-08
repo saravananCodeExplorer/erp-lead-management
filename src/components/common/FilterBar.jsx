@@ -17,8 +17,10 @@ const FilterBar = ({
       >
         <option value="">All Status</option>
         <option value="New">New</option>
+        <option value="Contacted">Contacted</option>
         <option value="Qualified">Qualified</option>
         <option value="Follow Up">Follow Up</option>
+        <option value="Won">Won</option>
         <option value="Lost">Lost</option>
       </select>
 

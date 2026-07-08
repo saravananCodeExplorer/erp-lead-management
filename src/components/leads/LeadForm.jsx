@@ -6,94 +6,96 @@ const LeadForm = ({
   handleSubmit,
   handleCancel,
 }) => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
   return (
-      <form onSubmit={handleSubmit}>
-        <button onClick={() => navigate(-1)}>
+    <div className="form-container">
+      <button 
+        type="button" 
+        className="btn-secondary btn-sm" 
+        onClick={() => navigate(-1)}
+        style={{ marginBottom: '20px' }}
+      >
         ← Back
       </button>
 
-      <div>
-        <label>Name</label>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name || ""}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-      </div>
+        <div className="form-group">
+          <label>Mobile</label>
+          <input
+            type="text"
+            name="mobile"
+            value={formData.mobile || ""}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <div>
-        <label>Mobile</label>
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email || ""}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <input
-          type="text"
-          name="mobile"
-          value={formData.mobile}
-          onChange={handleChange}
-        />
-      </div>
+        <div className="form-group">
+          <label>Status</label>
+          <select
+            name="status"
+            value={formData.status || "New"}
+            onChange={handleChange}
+          >
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Qualified">Qualified</option>
+            <option value="Follow Up">Follow Up</option>
+            <option value="Won">Won</option>
+            <option value="Lost">Lost</option>
+          </select>
+        </div>
 
-      <div>
-        <label>Email</label>
+        <div className="form-group">
+          <label>Assigned Employee</label>
+          <select
+            name="assignedEmployee"
+            value={formData.assignedEmployee || "John"}
+            onChange={handleChange}
+          >
+            <option value="John">John</option>
+            <option value="David">David</option>
+            <option value="Alex">Alex</option>
+          </select>
+        </div>
 
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </div>
-
-      <div>
-        <label>Status</label>
-
-        <select
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
-        >
-          <option value="New">New</option>
-          <option value="Qualified">
-            Qualified
-          </option>
-          <option value="Follow Up">
-            Follow Up
-          </option>
-          <option value="Lost">Lost</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Assigned Employee</label>
-
-        <select
-          name="assignedEmployee"
-          value={formData.assignedEmployee}
-          onChange={handleChange}
-        >
-          <option value="John">John</option>
-          <option value="David">David</option>
-          <option value="Alex">Alex</option>
-        </select>
-      </div>
-
-      <br />
-
-      <button type="submit">
-        Save
-      </button>
-
-      <button
-        type="button"
-        onClick={handleCancel}
-      >
-        Cancel
-      </button>
-
-    </form>
+        <div className="form-actions">
+          <button type="submit" className="btn-primary">
+            Save
+          </button>
+          <button
+            type="button"
+            className="btn-secondary"
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

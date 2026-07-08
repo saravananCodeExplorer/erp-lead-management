@@ -8,19 +8,21 @@ const NotesList = ({
   return (
     <div>
 
-      <h3>Notes</h3>
+      <h3>Notes ({notes.length})</h3>
 
       {notes.length === 0 ? (
-        <p>No Notes Available</p>
+        <p className="empty-state">No notes available for this lead yet.</p>
       ) : (
-        notes.map((note) => (
-          <NoteCard
-            key={note.id}
-            note={note}
-            onEdit={onEdit}
-            onDelete={onDelete}
-          />
-        ))
+        <div className="notes-list">
+          {notes.map((note) => (
+            <NoteCard
+              key={note.id}
+              note={note}
+              onEdit={onEdit}
+              onDelete={onDelete}
+            />
+          ))}
+        </div>
       )}
 
     </div>

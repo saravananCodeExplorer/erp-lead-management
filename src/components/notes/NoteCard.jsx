@@ -5,34 +5,28 @@ const NoteCard = ({
 }) => {
   return (
     <div className="note-card">
+      <div className="note-header">
+        <span>By: <strong>{note.createdBy}</strong></span>
+        <span>{note.createdDate}</span>
+      </div>
 
-      <p>
-        <strong>Note:</strong>
-        {note.note}
-      </p>
+      <div className="note-text">{note.note}</div>
 
-      <p>
-        <strong>Created By:</strong>
-        {note.createdBy}
-      </p>
+      <div className="note-actions">
+        <button
+          className="btn-secondary btn-sm"
+          onClick={() => onEdit(note)}
+        >
+          Edit
+        </button>
 
-      <p>
-        <strong>Date:</strong>
-        {note.createdDate}
-      </p>
-
-      <button
-        onClick={() => onEdit(note)}
-      >
-        Edit
-      </button>
-
-      <button
-        onClick={() => onDelete(note.id)}
-      >
-        Delete
-      </button>
-
+        <button
+          className="btn-danger btn-sm"
+          onClick={() => onDelete(note.id)}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 };

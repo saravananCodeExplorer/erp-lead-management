@@ -14,17 +14,16 @@ const NoteForm = ({ onAddNote }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="note-form">
       <textarea
-        rows="4"
-        placeholder="Enter note..."
+        rows="3"
+        placeholder="Type a new tracking note here..."
         value={note}
         onChange={(e) => setNote(e.target.value)}
+        required
       />
 
-      <br />
-
-      <button type="submit">
+      <button type="submit" className="btn-primary">
         Add Note
       </button>
     </form>

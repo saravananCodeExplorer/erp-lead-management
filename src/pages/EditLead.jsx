@@ -11,6 +11,7 @@ const EditLead = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
+  const [fullLead, setFullLead] = useState({});
 
   const [formData, setFormData] =
     useState({
@@ -32,13 +33,14 @@ const EditLead = () => {
       const response =
         await getLead(id);
 
+      setFullLead(response.data || {});
       setFormData({
-        name: response.data.name,
-        mobile: response.data.mobile,
-        email: response.data.email,
-        status: response.data.status,
+        name: response.data.name || "",
+        mobile: response.data.mobile || "",
+        email: response.data.email || "",
+        status: response.data.status || "New",
         assignedEmployee:
-          response.data.assignedEmployee,
+          response.data.assignedEmployee || "John",
       });
 
     } finally {
@@ -61,7 +63,12 @@ const EditLead = () => {
   try {
     setLoading(true);
 
-    await updateLead(id, formData);
+    const mergedPayload = {
+      ...fullLead,
+      ...formData,
+    };
+
+    await updateLead(id, mergedPayload);
 
     alert("Lead updated successfully.");
 

@@ -116,25 +116,32 @@ const LeadDetails = () => {
 
   return (
     <div className="container">
-      <button onClick={() => navigate(-1)}>
-        ← Back
-      </button>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "30px" }}>
+        <button className="btn-secondary btn-sm" onClick={() => navigate(-1)}>
+          ← Back
+        </button>
+        <button className="btn-primary" onClick={() => navigate(`/leads/${lead.id}/edit`)}>
+          Edit Details
+        </button>
+      </div>
 
-      <h2>Lead Details</h2>
+      <div className="lead-detail-layout">
+        <div>
+          <h2>Lead Profile</h2>
+          <LeadInfo lead={lead} />
+        </div>
 
-      <LeadInfo lead={lead} />
-
-      <hr />
-
-      <h2>Lead Notes</h2>
-
-      <NoteForm onAddNote={handleAddNote} />
-
-      <NotesList
-        notes={lead.notes || []}
-        onEdit={handleEditNote}
-        onDelete={handleDeleteNote}
-      />
+        <div className="notes-section">
+          <h2>Interaction History</h2>
+          <NoteForm onAddNote={handleAddNote} />
+          <hr style={{ border: 0, borderTop: "1px solid var(--border-color)", margin: "20px 0" }} />
+          <NotesList
+            notes={lead.notes || []}
+            onEdit={handleEditNote}
+            onDelete={handleDeleteNote}
+          />
+        </div>
+      </div>
     </div>
   );
 };

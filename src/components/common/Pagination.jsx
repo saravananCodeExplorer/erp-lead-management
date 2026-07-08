@@ -15,32 +15,36 @@ const Pagination = ({
           setRowsPerPage(Number(e.target.value))
         }
       >
-        <option value={10}>10</option>
-        <option value={25}>25</option>
-        <option value={50}>50</option>
+        <option value={10}>10 rows</option>
+        <option value={25}>25 rows</option>
+        <option value={50}>50 rows</option>
       </select>
 
-      <button
-        disabled={currentPage === 1}
-        onClick={() =>
-          setCurrentPage(currentPage - 1)
-        }
-      >
-        Prev
-      </button>
+      <div className="pagination-controls">
+        <button
+          className="btn-secondary btn-sm"
+          disabled={currentPage === 1}
+          onClick={() =>
+            setCurrentPage(currentPage - 1)
+          }
+        >
+          Prev
+        </button>
 
-      <span>
-        {currentPage} / {totalPages}
-      </span>
+        <span>
+          Page {currentPage} of {totalPages || 1}
+        </span>
 
-      <button
-        disabled={currentPage === totalPages}
-        onClick={() =>
-          setCurrentPage(currentPage + 1)
-        }
-      >
-        Next
-      </button>
+        <button
+          className="btn-secondary btn-sm"
+          disabled={currentPage >= totalPages || totalPages === 0}
+          onClick={() =>
+            setCurrentPage(currentPage + 1)
+          }
+        >
+          Next
+        </button>
+      </div>
 
     </div>
   );
