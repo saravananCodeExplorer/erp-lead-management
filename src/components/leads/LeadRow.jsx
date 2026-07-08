@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LeadRow = ({ lead }) => {
   return (
@@ -11,9 +12,14 @@ const LeadRow = ({ lead }) => {
       <td>{lead.createdDate}</td>
 
       <td>
-        <button>View</button>
-        <button>Edit</button>
-      </td>
+  <Link to={`/leads/${lead.id}`}>
+    <button>View</button>
+  </Link>
+
+  <Link to={`/leads/${lead.id}/edit`}>
+    <button>Edit</button>
+  </Link>
+</td>
     </tr>
   );
 };

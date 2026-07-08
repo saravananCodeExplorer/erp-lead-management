@@ -1,0 +1,56 @@
+body{
+    font-family:Arial;
+    margin:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,
+td{
+    border:1px solid #ddd;
+    padding:10px;
+}
+
+.filter-bar{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.pagination{
+    margin-top:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+button{
+    padding:8px 15px;
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+
+table{
+    display:block;
+    overflow-x:auto;
+}
+
+.filter-bar{
+
+flex-direction:column;
+
+}
+
+.pagination{
+
+flex-direction:column;
+gap:10px;
+
+}
+
+}
