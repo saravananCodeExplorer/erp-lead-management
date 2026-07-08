@@ -6,7 +6,15 @@
       "email": "rahul1@gmail.com",
       "status": "New",
       "assignedEmployee": "John",
-      "id": 1
+      "id": 1,
+      "notes": [
+        {
+          "id": 1783508154402,
+          "note": "welcome",
+          "createdBy": "Admin",
+          "createdDate": "2026-07-08"
+        }
+      ]
     },
     {
       "id": 2,

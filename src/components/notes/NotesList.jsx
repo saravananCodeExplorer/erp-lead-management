@@ -1,8 +1,13 @@
 import NoteCard from "./NoteCard";
 
-const NotesList = ({ notes }) => {
+const NotesList = ({
+  notes,
+  onEdit,
+  onDelete,
+}) => {
   return (
     <div>
+
       <h3>Notes</h3>
 
       {notes.length === 0 ? (
@@ -12,9 +17,12 @@ const NotesList = ({ notes }) => {
           <NoteCard
             key={note.id}
             note={note}
+            onEdit={onEdit}
+            onDelete={onDelete}
           />
         ))
       )}
+
     </div>
   );
 };
