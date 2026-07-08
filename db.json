@@ -1,17 +1,12 @@
 {
   "leads": [
     {
-      "id": 1,
-      "name": "Rahul Sharma",
+      "name": "Rahul",
       "mobile": "9876543201",
       "email": "rahul1@gmail.com",
-      "address": "Chennai",
-      "courseInterested": "React",
-      "leadSource": "Website",
       "status": "New",
       "assignedEmployee": "John",
-      "createdDate": "2026-07-01",
-      "notes": []
+      "id": 1
     },
     {
       "id": 2,
@@ -260,7 +255,6 @@
       "createdDate": "2026-07-20",
       "notes": []
     },
-
     {
       "id": 21,
       "name": "Ashwin",
@@ -326,7 +320,6 @@
       "createdDate": "2026-07-25",
       "notes": []
     },
-
     {
       "id": 26,
       "name": "Kavya",
@@ -380,19 +373,13 @@
       "notes": []
     },
     {
-      "id": 30,
       "name": "Janani",
       "mobile": "9876543230",
       "email": "janani30@gmail.com",
-      "address": "Erode",
-      "courseInterested": "Angular",
-      "leadSource": "Facebook",
       "status": "New",
       "assignedEmployee": "David",
-      "createdDate": "2026-07-30",
-      "notes": []
+      "id": 30
     },
-
     {
       "id": 31,
       "name": "Rohit",
@@ -458,7 +445,6 @@
       "createdDate": "2026-08-04",
       "notes": []
     },
-
     {
       "id": 36,
       "name": "Harini",
@@ -524,7 +510,6 @@
       "createdDate": "2026-08-09",
       "notes": []
     },
-
     {
       "id": 41,
       "name": "Vijay",

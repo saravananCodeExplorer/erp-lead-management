@@ -5,6 +5,8 @@ import Loader from "../components/common/Loader";
 import { getLead } from "../services/leadService";
 import LeadInfo from "../components/leads/LeadInfo";
 
+import NotesList from "../components/notes/NotesList";
+import NoteForm from "../components/notes/NoteForm";
 const LeadDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -52,7 +54,12 @@ const LeadDetails = () => {
 
       <h2>Lead Details</h2>
 
-       <LeadInfo lead={lead} />
+          <LeadInfo lead={lead} />
+          
+          <hr />
+<h2>Lead Notes</h2>
+<NoteForm />
+<NotesList notes={lead.notes || []} />
 
     </div>
   );

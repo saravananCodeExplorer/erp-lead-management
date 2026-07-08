@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../components/common/Loader";
 import LeadForm from "../components/leads/LeadForm";
 
-import { getLead } from "../services/leadService";
+import { getLead,updateLead } from "../services/leadService";
 
 const EditLead = () => {
   const { id } = useParams();
@@ -55,13 +55,24 @@ const EditLead = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    console.log(formData);
+  try {
+    setLoading(true);
 
-    // Step 22
-  };
+    await updateLead(id, formData);
+
+    alert("Lead updated successfully.");
+
+    navigate("/");
+  } catch (error) {
+    console.error(error);
+    alert("Failed to update lead.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleCancel = () => {
     navigate("/");
