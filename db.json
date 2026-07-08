@@ -27,7 +27,14 @@
       "status": "Qualified",
       "assignedEmployee": "David",
       "createdDate": "2026-07-02",
-      "notes": []
+      "notes": [
+        {
+          "id": 1783509588563,
+          "note": "Customer is interested in the React course",
+          "createdBy": "Admin",
+          "createdDate": "2026-07-08"
+        }
+      ]
     },
     {
       "id": 3,
