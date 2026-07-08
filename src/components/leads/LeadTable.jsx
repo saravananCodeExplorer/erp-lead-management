@@ -1,6 +1,8 @@
 import LeadRow from "./LeadRow";
 
 const LeadTable = ({ leads }) => {
+
+   
   return (
     <table border="1" width="100%" cellPadding="10">
       <thead>
