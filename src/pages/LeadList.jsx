@@ -3,10 +3,13 @@ import { getLeads } from "../services/leadService";
 import LeadTable from "../components/leads/LeadTable";
 import SearchBar from "../components/common/SearchBar";
 import FilterBar from "../components/common/FilterBar";
+import Pagination from "../components/common/Pagination";
 
 const LeadList = () => {
 
-    const [leads, setleads] = useState([]);
+
+const [leads, setleads] = useState([]);
+
 
     //  search filter
     const [search, setSearch] = useState("");
@@ -54,8 +57,25 @@ const filteredLeads = leads.filter((lead) => {
     matchesDate
   );
 });
-
     ///////////////////////////////
+    
+        ///////////////////////Pagination Logic
+    const [currentPage, setCurrentPage] = useState(1);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    
+     const lastIndex =
+  currentPage * rowsPerPage;
+
+const firstIndex =
+  lastIndex - rowsPerPage;
+
+const currentLeads =
+  filteredLeads.slice(firstIndex, lastIndex);
+
+const totalPages = Math.ceil(
+  filteredLeads.length / rowsPerPage
+    );
+/////////////////////////////////////////////////
 
 
   
@@ -88,7 +108,15 @@ const filteredLeads = leads.filter((lead) => {
   setEndDate={setEndDate}
   resetFilters={resetFilters}
 />
-     <LeadTable leads={filteredLeads} />
+          <LeadTable leads={currentLeads} />
+ <Pagination
+  currentPage={currentPage}
+  totalPages={totalPages}
+  setCurrentPage={setCurrentPage}
+  rowsPerPage={rowsPerPage}
+  setRowsPerPage={setRowsPerPage}
+/>
+          
     </div>
    
   );
