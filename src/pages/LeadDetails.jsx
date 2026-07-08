@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import Loader from "../components/common/Loader";
 import { getLead } from "../services/leadService";
+import LeadInfo from "../components/leads/LeadInfo";
 
 const LeadDetails = () => {
   const { id } = useParams();
@@ -51,56 +52,7 @@ const LeadDetails = () => {
 
       <h2>Lead Details</h2>
 
-      <table border="1" cellPadding="10">
-        <tbody>
-
-          <tr>
-            <th>Name</th>
-            <td>{lead.name}</td>
-          </tr>
-
-          <tr>
-            <th>Mobile</th>
-            <td>{lead.mobile}</td>
-          </tr>
-
-          <tr>
-            <th>Email</th>
-            <td>{lead.email}</td>
-          </tr>
-
-          <tr>
-            <th>Address</th>
-            <td>{lead.address}</td>
-          </tr>
-
-          <tr>
-            <th>Course Interested</th>
-            <td>{lead.courseInterested}</td>
-          </tr>
-
-          <tr>
-            <th>Lead Source</th>
-            <td>{lead.leadSource}</td>
-          </tr>
-
-          <tr>
-            <th>Assigned Employee</th>
-            <td>{lead.assignedEmployee}</td>
-          </tr>
-
-          <tr>
-            <th>Created Date</th>
-            <td>{lead.createdDate}</td>
-          </tr>
-
-          <tr>
-            <th>Current Status</th>
-            <td>{lead.status}</td>
-          </tr>
-
-        </tbody>
-      </table>
+       <LeadInfo lead={lead} />
 
     </div>
   );
